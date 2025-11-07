@@ -32,21 +32,27 @@
 #     print("IndexError")
 
 # №5
-def calculate (a,b,operation):
+def math_operation():
+    num1 = input("Введите первое число: ")
+    num2 = input("Введите второе число: ")
+    operation = input("Введите операцию (+, -, *, /): ")
     try:
-        number1 = float(a)
-        number2 = float(b)
+        num1 = float(num1)
+        num2 = float(num2)
         if operation == '+':
-            return number1 + number2
+            result = num1 + num2
         elif operation == '-':
-            return number1 - number2
+            result = num1 - num2
         elif operation == '*':
-            return number1 * number2
+            result = num1 * num2
         elif operation == '/':
-            if b == 0:
-                raise ZeroDivisionError("division by zero")
-            return number1 / number2
-    except ValueError:
-        print("неверное значение")
-
-calculate(1,2,'+')
+            try:
+                result = num1 / num2
+            except ZeroDivisionError:
+                print("Ошибка: деление на ноль невозможно.")
+                return
+        else:
+            raise ValueError("Неверная операция")
+        print(f"Результат {num1} {operation} {num2}: {result}")
+    except ValueError as e:
+        print(e)
